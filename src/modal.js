@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { addPersonToList } from './actions/action';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import _ from 'lodash';
 
 const iperson={
   fname:"",
@@ -10,18 +9,21 @@ const iperson={
   url:"",
   role:"",
   title:"",
-  id: _.uniqueId()
+  id: function(){
+     return $.now();
+  }
 
 }
 class Modal extends Component{
   constructor(props){
     super(props);
+
     this.OnInputChange=this.OnInputChange.bind(this);
     this.state={person:[]};
+  //  this.OnInputChange=_.debounce(this.OnInputChange,1000);
 
   }
   componentDidMount() {
-
     $(".reset").click(function(e){
       $(".modal-body input").val("");
       this.setState({person:[]});
@@ -29,23 +31,17 @@ class Modal extends Component{
   }
 
   OnInputChange(event){
-    //var form = document.get
+    var {personId}=this.props;
+    var {name,value}=event.target;
     var lperson=[];
     lperson[0]={}
-    var id=iperson.id+"";
-    console.log(typeof id);
-    var {name,value}=event.target;
     iperson[name]=value;
-    console.log("iperson ",iperson);
-
-      lperson[0].id=iperson;
-
+    lperson[0]={[personId]:iperson};
     console.log("lperson ",lperson);
     this.setState({person:lperson});
-    //console.log("before calling ac ",this.state.person)
-    this.props.addPersonToList(this.state.person);
-
-  }
+    console.log("before calling ac ",this.state.person)
+    this.props.addPersonToList(this.state.person,personId);
+}
   render(){
     return (
   <div>
@@ -63,34 +59,34 @@ class Modal extends Component{
 
                    <div className="form-group">
                       <label>First Name</label>
-                      <input type="text" className="form-control" name="fname" onChange={this.OnInputChange}
+                      <input type="text" className="form-control" name="fname" onChange={event=>this.OnInputChange(event)}
                           />
                     </div>
 
 
                    <div className="form-group">
                       <label>Last Name</label>
-                      <input type="text" className="form-control" name="lname" onChange={this.OnInputChange}/>
+                      <input type="text" className="form-control" name="lname" onChange={event=>this.OnInputChange(event)}/>
                     </div>
 
                     <div className="form-group">
                       <label>Email</label>
-                      <input type="email" className="form-control" name="email" onChange={this.OnInputChange}/>
+                      <input type="email" className="form-control" name="email" onChange={event=>this.OnInputChange(event)}/>
                     </div>
 
                     <div className="form-group">
                       <label>Title</label>
-                      <input type="text" className="form-control" name="title" onChange={this.OnInputChange}/>
+                      <input type="text" className="form-control" name="title" onChange={event=>this.OnInputChange(event)}/>
                     </div>
 
                     <div className="form-group">
                       <label>Role</label>
-                      <input type="text" className="form-control" name="role" onChange={this.OnInputChange}/>
+                      <input type="text" className="form-control" name="role" onChange={event=>this.OnInputChange(event)}/>
                     </div>
 
                     <div className="form-group">
                       <label>Linkedin URL</label>
-                      <input type="text" className="form-control" name="url" onChange={this.OnInputChange}/>
+                      <input type="text" className="form-control" name="url" onChange={event=>this.OnInputChange(event)}/>
                     </div>
 
                     <div className="form-group">
@@ -116,4 +112,7 @@ class Modal extends Component{
     )
   }
 }
-export default connect(null, {addPersonToList})(Modal);
+// function mapStateToProps(state){
+//   return {id:state.listOfPerson}
+// }
+ export default connect(null, {addPersonToList})(Modal);
