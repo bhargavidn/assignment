@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import  Modal from './modal';
 import ListOfPerson from './listOfPerson';
+import EmpTree from './empTree';
 import { addNewPerson } from './actions/action';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -31,6 +32,7 @@ class App extends Component{
           data-target="#exampleModalLong" id="showModal"> Add  </button>
         </div>
         <ListOfPerson/>
+        <EmpTree />
       </div>
     )
   }

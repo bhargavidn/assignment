@@ -45,11 +45,13 @@ class Modal extends Component{
       let personid=id.length>0?id:personId;
       let {name,value}=event.target;
 
-      iperson[name]=value;
-      iperson.id=personid;
+    //  iperson[name]=value;
+    //  iperson.id=personid;
       ivalues[name]=value;
+      ivalues.id=personid;
+      console.log("ivalues..",ivalues);
 
-      this.setState({person:iperson});
+      this.setState({person:ivalues});
       this.props.addPersonToList(this.state.person,personid);
 
     //var ivalues=Object.assign({},this.props.person);

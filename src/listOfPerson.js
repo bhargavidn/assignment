@@ -14,12 +14,11 @@ class ListOfPerson extends Component{
   }
   renderList(){
     if(Object.keys(this.props.listOfPerson).length>0){
-      return _.map(this.props.listOfPerson,person=>{
-        console.log("inside map..",person);
+      return _.map(this.props.listOfPerson,(person,index)=>{
         let {id,fname,lname,email,role}=person;
         return(
-          <tr  key={id}>
-          <th scope="row">{id}</th>
+          <tr  key={index}>
+          <th scope="row">{index}</th>
               <td>{`${fname} ${lname}`}</td>
               <td>{email}</td>
               <td>{role}</td>
