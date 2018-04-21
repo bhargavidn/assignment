@@ -10,3 +10,31 @@
 .pull-right {
     float: right !important;
 }
+.table.table-striped.table-custom-width {
+	width: 60%;
+	table-layout: fixed;
+}
+.dispnone{
+  display: none;
+}
+
+.ed-del-btn {
+  padding-left: 4px;
+	text-decoration: underline;
+
+}
+.ed-del-btn:first-of-type {
+
+    text-align: left;
+    padding: 0;
+}
+p.slash {
+    /* margin-bottom: 1em; */
+    margin-top: 1em;
+    padding-left: 4px;
+    /* display: table-caption; */
+    line-height: 6px;
+    /* vertical-align: middle; */
+    /* display: table-cell; */
+    padding-top: -6px;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { addPersonToList } from './actions/action';
 import { connect } from 'react-redux';
 import $ from 'jquery';
+import './App.css';
 
 const iperson={
   fname:"",
@@ -33,12 +34,13 @@ class Modal extends Component{
   OnInputChange(event){
     var {personId}=this.props;
     var {name,value}=event.target;
-    var lperson=[];
-    lperson[0]={}
+     // var lperson=[];
+     // lperson[0]={}
     iperson[name]=value;
-    lperson[0]={[personId]:iperson};
-    console.log("lperson ",lperson);
-    this.setState({person:lperson});
+    iperson.id=personId;
+     // lperson[0]={[personId]:iperson};
+     // console.log("lperson ",lperson);
+    this.setState({person:iperson});
     console.log("before calling ac ",this.state.person)
     this.props.addPersonToList(this.state.person,personId);
 }
@@ -56,7 +58,6 @@ class Modal extends Component{
             </div>
             <div className="modal-body">
               <div className="container">
-
                    <div className="form-group">
                       <label>First Name</label>
                       <input type="text" className="form-control" name="fname" onChange={event=>this.OnInputChange(event)}
