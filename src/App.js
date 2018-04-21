@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import  Modal from './modal';
 import ListOfPerson from './listOfPerson';
-import { GenPersonId } from './actions/action';
+import { addNewPerson } from './actions/action';
 import _ from 'lodash';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import $ from 'jquery';
 
-
-export default class App extends Component{
+class App extends Component{
   constructor(props){
     super(props);
     this.state={id:""}
@@ -17,6 +16,7 @@ export default class App extends Component{
     $('#showModal').click(function(){
     //  this.props.GenPersonId(true,_.uniqueId());
     this.setState({id:_.uniqueId()});
+    this.props.addNewPerson();
     }.bind(this));
   }
   render(){
@@ -24,7 +24,7 @@ export default class App extends Component{
       <div>
         <Modal personId={this.state.id}/>
         <div className="App">
-          Welcome
+            Employee Management
         </div>
         <div className="pull-right">
           <button type="button" className="btn btn-primary btn-lg" data-toggle="modal"
@@ -35,4 +35,4 @@ export default class App extends Component{
     )
   }
 }
-//export default connect(null, {GenPersonId})(App);
+export default connect(null, {addNewPerson})(App);

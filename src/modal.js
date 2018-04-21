@@ -7,14 +7,15 @@ import './App.css';
 const iperson={
   fname:"",
   lname:"",
-  url:"",
+  email:"",
   role:"",
   title:"",
   id: function(){
      return $.now();
   }
-
 }
+var ivalues=Object.assign({},iperson);
+
 class Modal extends Component{
   constructor(props){
     super(props);
@@ -24,34 +25,58 @@ class Modal extends Component{
   //  this.OnInputChange=_.debounce(this.OnInputChange,1000);
 
   }
+  componentWillReceiveProps(nextProps){
+    //console.log("inside receieve props",nextProps);
+
+    ivalues=Object.assign({},nextProps.person);
+  //  console.log("inside receieve props ",ivalues);
+
+  }
   componentDidMount() {
     $(".reset").click(function(e){
       $(".modal-body input").val("");
-      this.setState({person:[]});
+    //  this.setState({person:{person:[],term:ivalues}});
     }.bind(this));
   }
 
   OnInputChange(event){
-    var {personId}=this.props;
-    var {name,value}=event.target;
-     // var lperson=[];
-     // lperson[0]={}
-    iperson[name]=value;
-    iperson.id=personId;
-     // lperson[0]={[personId]:iperson};
-     // console.log("lperson ",lperson);
-    this.setState({person:iperson});
-    console.log("before calling ac ",this.state.person)
-    this.props.addPersonToList(this.state.person,personId);
+      const {id}=this.props.person;
+      const {personId}=this.props;
+      let personid=id.length>0?id:personId;
+      let {name,value}=event.target;
+
+      iperson[name]=value;
+      iperson.id=personid;
+      ivalues[name]=value;
+
+      this.setState({person:iperson});
+      this.props.addPersonToList(this.state.person,personid);
+
+    //var ivalues=Object.assign({},this.props.person);
+
+    // ivalues[name]=value;
+    // this.setState({person:{term:ivalues}});
+
 }
   render(){
+    //var { person }=this.props;
+    // if(Object.keys(person).length>0){
+    //   var {fname,lname,}
+    // }
+  //  const {fname,lname,email,role,title,id}=this.props.person;
+    const {fname,lname,email,role,title,id}=ivalues;
+    console.log("ivalues..",ivalues);
+    console.log(" inside modal..",this.props.person);
+
+  //  console.log(" internal state..",this.state.term);
+
     return (
   <div>
     <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">Person Details</h5>
+              <h5 className="modal-title" id="exampleModalLongTitle">Employee Details</h5>
               <button type="button" className="close reset" data-dismiss="modal" aria-label="Close" >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -61,33 +86,32 @@ class Modal extends Component{
                    <div className="form-group">
                       <label>First Name</label>
                       <input type="text" className="form-control" name="fname" onChange={event=>this.OnInputChange(event)}
-                          />
+                        value={fname}  />
                     </div>
 
 
                    <div className="form-group">
                       <label>Last Name</label>
-                      <input type="text" className="form-control" name="lname" onChange={event=>this.OnInputChange(event)}/>
+                      <input type="text" className="form-control" name="lname"
+                      onChange={event=>this.OnInputChange(event)} value={lname} />
                     </div>
 
                     <div className="form-group">
                       <label>Email</label>
-                      <input type="email" className="form-control" name="email" onChange={event=>this.OnInputChange(event)}/>
+                      <input type="email" className="form-control" name="email"
+                      onChange={event=>this.OnInputChange(event)} value={email} />
                     </div>
 
                     <div className="form-group">
                       <label>Title</label>
-                      <input type="text" className="form-control" name="title" onChange={event=>this.OnInputChange(event)}/>
+                      <input type="text" className="form-control" name="title"
+                      onChange={event=>this.OnInputChange(event)} value={title} />
                     </div>
 
                     <div className="form-group">
                       <label>Role</label>
-                      <input type="text" className="form-control" name="role" onChange={event=>this.OnInputChange(event)}/>
-                    </div>
-
-                    <div className="form-group">
-                      <label>Linkedin URL</label>
-                      <input type="text" className="form-control" name="url" onChange={event=>this.OnInputChange(event)}/>
+                      <input type="text" className="form-control" name="role"
+                      onChange={event=>this.OnInputChange(event)} value={role} />
                     </div>
 
                     <div className="form-group">
@@ -113,7 +137,7 @@ class Modal extends Component{
     )
   }
 }
-// function mapStateToProps(state){
-//   return {id:state.listOfPerson}
-// }
- export default connect(null, {addPersonToList})(Modal);
+function mapStateToProps(state){
+  return {person:state.activePerson}
+}
+ export default connect(mapStateToProps, {addPersonToList})(Modal);
