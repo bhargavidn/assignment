@@ -116,19 +116,12 @@ class Modal extends Component{
                       onChange={event=>this.OnInputChange(event)} value={role} />
                     </div>
 
-                    <div className="form-group">
-                      <div className="form-check">
-                          <input className="form-check-input" type="checkbox" />
-                          <label className="form-check-label">
-                            Is Primary
-                          </label>
-                      </div>
-                    </div>
+
 
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary reset" data-dismiss="modal"
+              <button type="button" className="btn btn-style reset" data-dismiss="modal"
               >Close</button>
 
             </div>

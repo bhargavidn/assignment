@@ -18,18 +18,24 @@ class ListOfPerson extends Component{
         let {id,fname,lname,email,role}=person;
         return(
           <tr  key={index}>
-          <th scope="row">{index}</th>
+
+              <td><i className="fa fa-user fa-1g color-style"></i></td>
               <td>{`${fname} ${lname}`}</td>
               <td>{email}</td>
               <td>{role}</td>
               <td>
-                  <div className="btn-group">
+
                     <button className="btn btn-link ed-del-btn" onClick={()=>this.editPerson(id,person)}
                     data-toggle="modal"
-                    data-target="#exampleModalLong">Edit</button>
-                    <p className="slash">/</p>
-                    <button className="btn btn-link ed-del-btn" onClick={()=>this.deletePerson(id)}>Delete</button>
-                  </div>
+                    data-target="#exampleModalLong">
+                        <i className="fa fa-edit color-style"></i>
+                    </button>
+              </td>
+              <td>
+                    <button className="btn btn-link ed-del-btn" onClick={()=>this.deletePerson(id)}>
+                      <i className="far fa-trash-alt color-style"></i>
+                    </button>
+
               </td>
           </tr>
         )
@@ -45,21 +51,23 @@ class ListOfPerson extends Component{
   //  console.log(className);
     return(
 
-      <div>
-        <h3> Employee </h3>
+      <div className="border-bottom">
+        <h5> Employee </h5>
         <div className={errclassName}>
-          <h6> Oops, Nobody yet, Please add some. </h6>
+          <p> <i>Oops!! Nobody yet, Please add some. </i></p>
         </div>
         <div>
           <center>
               <table className={className}>
                 <thead className="thead-light">
                   <tr>
-                      <th scope="col">#</th>
+                      <th scope="col"></th>
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Role</th>
-                      <th scope="col">action</th>
+                      <th scope="col"></th>
+
+                      <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>

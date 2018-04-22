@@ -25,14 +25,18 @@ class App extends Component{
       <div>
         <Modal personId={this.state.id}/>
         <div className="App">
-            Employee Management
+            <h3>Employee Management</h3>
         </div>
-        <div className="pull-right">
-          <button type="button" className="btn btn-primary btn-lg" data-toggle="modal"
-          data-target="#exampleModalLong" id="showModal"> Add  </button>
+        <div className="content-align container">
+          <div className="pull-right">
+              <button type="button" className="btn btn-style btn-sm" data-toggle="modal"
+              data-target="#exampleModalLong" id="showModal">
+              <i className="fa fa-user-plus ico-space"></i>
+               Add  </button>
+          </div>
+            <ListOfPerson/>
+            <EmpTree />
         </div>
-        <ListOfPerson/>
-        <EmpTree />
       </div>
     )
   }
