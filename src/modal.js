@@ -34,7 +34,7 @@ class Modal extends Component{
     $(".reset").click(function(e){
       $(".modal-body input").val("");
     //  this.setState({person:{person:[],term:ivalues}});
-    }.bind(this));
+  });
   }
 
   OnInputChange(event){
@@ -58,7 +58,7 @@ class Modal extends Component{
 }
   render(){
 
-    const {fname,lname,email,role,title,id}=ivalues;
+    const {fname,lname,email,role,title}=ivalues;
 
     return (
   <div>
