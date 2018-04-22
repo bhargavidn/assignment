@@ -26,10 +26,8 @@ class Modal extends Component{
 
   }
   componentWillReceiveProps(nextProps){
-    //console.log("inside receieve props",nextProps);
 
     ivalues=Object.assign({},nextProps.person);
-  //  console.log("inside receieve props ",ivalues);
 
   }
   componentDidMount() {
@@ -45,11 +43,9 @@ class Modal extends Component{
       let personid=id.length>0?id:personId;
       let {name,value}=event.target;
 
-    //  iperson[name]=value;
-    //  iperson.id=personid;
+
       ivalues[name]=value;
       ivalues.id=personid;
-      console.log("ivalues..",ivalues);
 
       this.setState({person:ivalues});
       this.props.addPersonToList(this.state.person,personid);
@@ -61,16 +57,8 @@ class Modal extends Component{
 
 }
   render(){
-    //var { person }=this.props;
-    // if(Object.keys(person).length>0){
-    //   var {fname,lname,}
-    // }
-  //  const {fname,lname,email,role,title,id}=this.props.person;
-    const {fname,lname,email,role,title,id}=ivalues;
-    console.log("ivalues..",ivalues);
-    console.log(" inside modal..",this.props.person);
 
-  //  console.log(" internal state..",this.state.term);
+    const {fname,lname,email,role,title,id}=ivalues;
 
     return (
   <div>

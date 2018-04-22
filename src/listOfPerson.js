@@ -43,21 +43,20 @@ class ListOfPerson extends Component{
   }
   }
   render(){
-    console.log("state..",this.props.listOfPerson);
     let {length}=Object.keys(this.props.listOfPerson);
-    const className=`table table-striped table-custom-width ${length >0?"":"dispnone"}`;
+    const className=`table table-striped  ${length >0?"":"dispnone"}`;
     let errclassName=`${length<=0 ? "":"dispnone"}`;
-  //  console.log("errclassName ",errclassName);
-  //  console.log(className);
+
     return(
 
-      <div className="border-bottom">
-        <h5> Employee </h5>
+      <div >
+        <div className="border-bottom title-style">
+            <h5> Employee </h5>
+        </div>
         <div className={errclassName}>
           <p> <i>Oops!! Nobody yet, Please add some. </i></p>
         </div>
-        <div>
-          <center>
+        <div className="table-custom-width">
               <table className={className}>
                 <thead className="thead-light">
                   <tr>
@@ -75,7 +74,6 @@ class ListOfPerson extends Component{
                 </tbody>
               </table>
 
-            </center>
         </div>
       </div>
     )

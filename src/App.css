@@ -12,9 +12,8 @@ body{
 .pull-right {
     float: right !important;
 }
-.table.table-striped.table-custom-width {
-	width: 60%;
-	table-layout: fixed;
+.table-custom-width {
+    margin-top:30px;
 }
 .dispnone{
   display: none;
@@ -71,4 +70,18 @@ i.fas.fa-times {
 }
 i.far.fa-trash-alt {
     color: indianred;
+}
+.border-bottom.title-style {
+    padding-bottom: 10px;
+}
+.form-group {
+    margin-top: 10px;
+}
+div#alert-div {
+    top: 0;
+    position: fixed;
+
+    z-index: 1;
+    margin-left: -293px !important;
+  
 }

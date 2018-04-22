@@ -28,14 +28,21 @@ class App extends Component{
             <h3>Employee Management</h3>
         </div>
         <div className="content-align container">
-          <div className="pull-right">
-              <button type="button" className="btn btn-style btn-sm" data-toggle="modal"
-              data-target="#exampleModalLong" id="showModal">
-              <i className="fa fa-user-plus ico-space"></i>
-               Add  </button>
-          </div>
-            <ListOfPerson/>
-            <EmpTree />
+        <div className="row">
+            <div className="col-sm-8 border-right">
+                    <div className="pull-right">
+                        <button type="button" className="btn btn-style btn-sm" data-toggle="modal"
+                        data-target="#exampleModalLong" id="showModal">
+                        <i className="fa fa-user-plus ico-space"></i>
+                         Add  </button>
+                    </div>
+                      <ListOfPerson/>
+              </div>
+              <div className="col-sm-4">
+                  <EmpTree />
+              </div>
+              
+            </div>
         </div>
       </div>
     )

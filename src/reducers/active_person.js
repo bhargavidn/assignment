@@ -9,7 +9,6 @@ const initialState = {
   id: ""
 }
 export default function(state=initialState,action){
-  console.log("state..",state);
   switch (action.type){
     case EDIT_PERSON:{
         const {person}=action;
